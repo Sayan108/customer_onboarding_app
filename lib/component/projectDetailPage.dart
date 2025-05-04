@@ -1,3 +1,4 @@
+import 'package:customer_onboarding_app/component/layOut.dart';
 import 'package:flutter/material.dart';
 
 class ProjectDetailPage extends StatelessWidget {
@@ -12,83 +13,56 @@ class ProjectDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 24),
-                _buildSectionTitle("Task List"),
-                const SizedBox(height: 8),
-                ..._buildTaskList(),
-                const Divider(thickness: 1, height: 32),
-                _buildSectionTitle("Change requests"),
-                const SizedBox(height: 8),
-                ..._buildChangeRequests(),
-                const Divider(thickness: 1, height: 32),
-                _buildSectionTitle("Documents"),
-                const SizedBox(height: 8),
-                _buildDocuments(),
-                const Divider(thickness: 1, height: 32),
-                _buildSectionTitle("Your team"),
-                const SizedBox(height: 8),
-                _buildTeamDetails(),
-                const SizedBox(height: 32),
-                if (paymentDue)
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 60,
-                          vertical: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+    return CommonLayout(
+      title: project['title'] ?? 'Project Details',
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSectionTitle("Task List"),
+              const SizedBox(height: 8),
+              ..._buildTaskList(),
+              const Divider(thickness: 1, height: 32),
+              _buildSectionTitle("Change requests"),
+              const SizedBox(height: 8),
+              ..._buildChangeRequests(),
+              const Divider(thickness: 1, height: 32),
+              _buildSectionTitle("Documents"),
+              const SizedBox(height: 8),
+              _buildDocuments(),
+              const Divider(thickness: 1, height: 32),
+              _buildSectionTitle("Your team"),
+              const SizedBox(height: 8),
+              _buildTeamDetails(),
+              const SizedBox(height: 32),
+              if (paymentDue)
+                Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 60,
+                        vertical: 16,
                       ),
-                      onPressed: () {
-                        // Payment logic here
-                      },
-                      child: const Text(
-                        "Pay \$1M",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
+                    onPressed: () {
+                      // Payment logic here
+                    },
+                    child: const Text(
+                      "Pay \$1M",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            project['title'] ?? 'Project Title',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
-        CircleAvatar(
-          radius: 24,
-          backgroundColor: Colors.pink[100],
-          child: Text(
-            'Sayan Dey',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ],
     );
   }
 

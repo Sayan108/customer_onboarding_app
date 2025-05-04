@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:customer_onboarding_app/component/homePage.dart';
+import 'package:customer_onboarding_app/component/layOut.dart';
 
 class ServiceDetailPage extends StatefulWidget {
   final String title;
@@ -21,7 +22,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
         'Developers': 1,
         'Team Members': 2,
         'Pages': 5,
-        "Support": "IST",
+        'Support': 'IST',
       },
     },
     {
@@ -32,7 +33,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
         'Developers': 2,
         'Team Members': 4,
         'Pages': 10,
-        "Support": "IST",
+        'Support': 'IST',
       },
     },
     {
@@ -43,7 +44,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
         'Developers': 3,
         'Team Members': 6,
         'Pages': 20,
-        "Support": "24/7",
+        'Support': '24/7',
       },
     },
   ];
@@ -52,19 +53,22 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: SingleChildScrollView(
+    return CommonLayout(
+      title: widget.title,
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ...plans.asMap().entries.map((entry) {
               int index = entry.key;
               var plan = entry.value;
 
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                padding: EdgeInsets.all(16),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: plan['color'],
                   borderRadius: BorderRadius.circular(12),
@@ -72,7 +76,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 4,
-                      offset: Offset(2, 2),
+                      offset: const Offset(2, 2),
                     ),
                   ],
                 ),
@@ -86,14 +90,14 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                             children: [
                               Text(
                                 plan['type'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 plan['price'],
-                                style: TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
@@ -113,7 +117,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                       ],
                     ),
                     if (isExpanded[index]) ...[
-                      Divider(thickness: 1),
+                      const Divider(thickness: 1),
                       ...plan['details'].entries.map<Widget>((detail) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -126,7 +130,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                           ),
                         );
                       }),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -134,7 +138,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                             MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
-                        child: Text('Buy Now'),
+                        child: const Text('Buy Now'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           foregroundColor: Colors.white,

@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:customer_onboarding_app/component/projectDetailPage.dart';
+import 'package:customer_onboarding_app/component/layOut.dart';
 
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'E-Commerce App',
-      'type': 'Mobile App',
+      'type': 'Custom Software Development',
       'icon': Icons.phone_android,
-      'startDate': '2024-01-10',
-      'endDate': '2024-06-20',
+      'orderId': 'OD-12324567890',
+      'endDate': '9th May , 2025',
       'progress': 0.75,
     },
     {
       'title': 'Marketing Website',
-      'type': 'Web App',
+      'type': 'Website Development',
       'icon': Icons.language,
-      'startDate': '2024-02-01',
-      'endDate': '2024-07-15',
+      'orderId': 'OD-12324567890',
+      'endDate': '9th May , 2025',
       'progress': 0.5,
     },
     {
       'title': 'CRM Dashboard',
-      'type': 'Dashboard',
+      'type': 'Marketing',
       'icon': Icons.dashboard,
-      'startDate': '2024-03-15',
-      'endDate': '2024-09-30',
+      'orderId': 'OD-12324567890',
+      'endDate': '9th May , 2025',
       'progress': 0.3,
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Projects')),
-      body: ListView.builder(
-        padding: EdgeInsets.all(16),
+    return CommonLayout(
+      title: 'Projects',
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16),
         itemCount: projects.length,
         itemBuilder: (context, index) {
           final project = projects[index];
@@ -48,60 +49,53 @@ class HomePage extends StatelessWidget {
                 ),
               );
             },
-            child: Card(
-              margin: EdgeInsets.only(bottom: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    // Left Section
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                project['icon'],
-                                size: 24,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  project['title'],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: [
+                  // Left Section
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(project['icon'], size: 24, color: Colors.blue),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                project['title'],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Text("Type: ${project['type']}"),
-                          Text("Start: ${project['startDate']}"),
-                          Text("End: ${project['endDate']}"),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Text(project['type']),
+                        Text("Order ID: ${project['orderId']}"),
+                        Text("Delivery Date: ${project['endDate']}"),
+                        const Divider(color: Colors.grey, thickness: 1.5),
+                      ],
                     ),
+                  ),
 
-                    // Right Section - Circular Progress
-                    CircularPercentIndicator(
-                      radius: 40.0,
-                      lineWidth: 6.0,
-                      percent: project['progress'],
-                      center: Text('${(project['progress'] * 100).toInt()}%'),
-                      progressColor: Colors.green,
-                      backgroundColor: Colors.grey[200]!,
-                      circularStrokeCap: CircularStrokeCap.round,
+                  // Right Section - Circular Progress
+                  CircularPercentIndicator(
+                    radius: 35,
+                    lineWidth: 6.0,
+                    percent: project['progress'],
+                    center: Text(
+                      '${(project['progress'] * 100).toInt()}%',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                  ],
-                ),
+                    progressColor: Colors.green,
+                    backgroundColor: const Color.fromARGB(255, 216, 238, 190),
+                    circularStrokeCap: CircularStrokeCap.round,
+                  ),
+                ],
               ),
             ),
           );

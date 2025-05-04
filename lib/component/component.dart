@@ -3,3 +3,4 @@ export 'scrollableItemList.dart';
 export 'serviceDetailsPage.dart';
 export 'homePage.dart';
 export 'projectDetailPage.dart';
+export 'layOut.dart';

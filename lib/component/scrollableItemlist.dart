@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:customer_onboarding_app/component/serviceDetailsPage.dart';
+import 'package:customer_onboarding_app/component/layOut.dart';
 
 class ScrollableItemListPage extends StatelessWidget {
   final List<Map<String, String>> items = [
@@ -20,10 +21,10 @@ class ScrollableItemListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Customer Onboarding')),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+    return CommonLayout(
+      title: 'Customer Onboarding',
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,7 +60,7 @@ class ScrollableItemListPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    margin: EdgeInsets.only(bottom: 16),
+                    margin: const EdgeInsets.only(bottom: 16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.grey[200],
@@ -74,7 +75,7 @@ class ScrollableItemListPage extends StatelessWidget {
                     child: Column(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.vertical(
+                          borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(12),
                           ),
                           child: Image.asset(
@@ -88,7 +89,7 @@ class ScrollableItemListPage extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
                             item['title']!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
